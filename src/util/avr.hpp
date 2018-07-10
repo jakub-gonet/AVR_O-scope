@@ -11,6 +11,10 @@ class Avr {
     return address;
   }
 
+  static inline void set(volatile uint8_t& address, const uint8_t value) {
+    address = value;
+  }
+
  private:
   Avr() {}
   ~Avr() {}
