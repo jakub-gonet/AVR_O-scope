@@ -3,6 +3,7 @@
 
 #include "adc.hpp"
 #include "usart.hpp"
+#include "util/fifo.hpp"
 
 template <uint16_t BufferSize>
 class Measure {
@@ -13,11 +14,9 @@ class Measure {
    * @param usart an Usart reference
    */
   void flush_data_via_USART(Usart& usart) {
-    for (; last_value == 0 || last_value % BufferSize; ++last_value) {
-      usart.send_byte(buffer[last_value]);
+    while (!buffer.is_empty()) {
+      usart.send_byte(buffer.get());
     }
-
-    last_value = 0;
   }
 
   /**
@@ -26,18 +25,17 @@ class Measure {
    * @return true
    * @return false
    */
-  inline bool is_full() const { return last_value + 1 == BufferSize; }
+  inline bool is_full() const { return buffer.is_full(); }
 
   /**
    * @brief Stores provided data in buffer
    *
    * @param data
    */
-  inline void store_measured_data(const uint8_t data) { buffer[last_value++]; }
+  inline void store_measured_data(const uint8_t data) { buffer.put(data); }
 
  private:
-  uint16_t last_value = 0;
-  uint8_t buffer[BufferSize];
+  FifoQueue<BufferSize> buffer;
   const Adc<> adc;
 };
 
