@@ -6,6 +6,9 @@ extern "C" {
 }
 
 class Avr {
+ private:
+  Avr() {}
+  ~Avr() {}
 };
 
 #endif  // AVR_HPP
