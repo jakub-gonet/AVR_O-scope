@@ -21,6 +21,8 @@ class Adc {
                         (1 << ADIE));
   }
 
+  inline uint8_t get_8bit_conversion_result() const { return HW::get(ADCH); }
+
   inline void stop_ADC() const { HW::clear(ADCSRA, (1 << ADEN)); }
   inline void start_ADC() const { HW::update(ADCSRA, (1 << ADEN)); }
 };
