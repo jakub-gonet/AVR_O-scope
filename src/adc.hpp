@@ -20,6 +20,9 @@ class Adc {
     HW::set(ADCSRA, (1 << ADEN) | (1 << ADFR) | (1 << ADSC) | (1 << ADIF) |
                         (1 << ADIE));
   }
+
+  inline void stop_ADC() const { HW::clear(ADCSRA, (1 << ADEN)); }
+  inline void start_ADC() const { HW::update(ADCSRA, (1 << ADEN)); }
 };
 
 #endif  // ADC_HPP
