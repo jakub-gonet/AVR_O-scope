@@ -4,6 +4,8 @@
 template <uint16_t BufferSize>
 class Measure {
  public:
+  inline bool is_full() const { return last_value + 1 == BufferSize; }
+
   inline void store_measured_data(const uint8_t data) { buffer[last_value++]; }
 
  private:
