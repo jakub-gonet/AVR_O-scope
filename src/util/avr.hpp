@@ -15,6 +15,10 @@ class Avr {
     address = value;
   }
 
+  static inline void clear(volatile uint8_t& address, const uint8_t value) {
+    address &= ~value;
+  }
+
  private:
   Avr() {}
   ~Avr() {}
