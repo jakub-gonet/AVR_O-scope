@@ -28,6 +28,9 @@ class Avr {
     return !(address & value);
   }
 
+  static inline void enable_interrupts() { sei(); }
+  static inline void disable_interrupts() { cli(); }
+
   // members
 
   // ADC
