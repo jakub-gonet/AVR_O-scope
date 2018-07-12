@@ -35,6 +35,10 @@ class Measure {
    */
   inline void store_measured_data(const uint8_t data) { buffer.put(data); }
 
+  inline uint8_t get_ADC_result() const {
+    return adc.get_8bit_conversion_result();
+  }
+
  private:
   FifoQueue<BufferSize> buffer;
   const Adc<Avr> adc;
