@@ -27,6 +27,11 @@ class Avr {
     return address & value;
   }
 
+  static inline bool is_cleared(volatile uint8_t& address,
+                                const uint8_t value) {
+    return address & ~value;
+  }
+
  private:
   Avr() {}
   ~Avr() {}
