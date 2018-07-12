@@ -4,6 +4,7 @@
 #include "adc.hpp"
 #include "usart.hpp"
 #include "util/fifo.hpp"
+#include "util/avr.hpp"
 
 template <uint16_t BufferSize>
 class Measure {
@@ -36,7 +37,7 @@ class Measure {
 
  private:
   FifoQueue<BufferSize> buffer;
-  const Adc<> adc;
+  const Adc<Avr> adc;
 };
 
 #endif  // MEASURE_HPP
