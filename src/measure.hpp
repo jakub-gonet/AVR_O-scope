@@ -39,6 +39,9 @@ class Measure {
     return adc.get_8bit_conversion_result();
   }
 
+  inline void disableAdc() const { adc.stop_ADC(); }
+  inline void enableAdc() const { adc.start_ADC(); }
+
  private:
   FifoQueue<BufferSize> buffer;
   const Adc<Avr> adc;
