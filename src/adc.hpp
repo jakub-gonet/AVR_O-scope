@@ -12,7 +12,7 @@ class Adc {
     // ADC enable, free running mode, start first
     // conversion, interrupt on update, turn on
     // interrupts default prescaler (/2)
-    HW::set(HW::Adcsra(), HW::Aden | HW::Adfr | HW::Adsc | HW::Adif | HW::Adie);
+    HW::set(HW::Adcsra(), HW::Aden | HW::Adfr | HW::Adsc | HW::Adie);
   }
 
   inline uint8_t get_8bit_conversion_result() const { return HW::Adch(); }
