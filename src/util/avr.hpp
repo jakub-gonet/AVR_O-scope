@@ -42,6 +42,8 @@ class Avr {
   constexpr static uint8_t Adsc = (1 << ADSC);
   constexpr static uint8_t Adif = (1 << ADIF);
   constexpr static uint8_t Adie = (1 << ADIE);
+  constexpr static uint8_t Adps0 = (1 << ADPS0);
+  constexpr static uint8_t Adps1 = (1 << ADPS1);
 
   // USART
   constexpr static volatile uint8_t& Ubrrh() { return UBRRH; }
