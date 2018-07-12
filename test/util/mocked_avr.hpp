@@ -4,6 +4,7 @@
 extern "C" {
 #include <stdint.h>
 }
+#include "mocked_avr_registers.hpp"
 
 class MockedAvr {
  public:
@@ -25,6 +26,10 @@ class MockedAvr {
 
   // members
 
+  static volatile uint8_t& Admux() { return registers.Admux; }
+  static volatile uint8_t& Adcsra() { return registers.Adcsra; }
+  static volatile uint8_t& Adch() { return (registers.Adch); }
+
   constexpr static uint8_t Adps2 = (1 << 2);
   constexpr static uint8_t Adps1 = (1 << 1);
   constexpr static uint8_t Adps0 = (1 << 0);
@@ -35,6 +40,8 @@ class MockedAvr {
   constexpr static uint8_t Adsc = (1 << 6);
   constexpr static uint8_t Adif = (1 << 4);
   constexpr static uint8_t Adie = (1 << 3);
+
+  static MockedAvrRegisters registers;
 };
 
 #endif  // MOCKED_AVR_HPP
