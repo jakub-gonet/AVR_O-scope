@@ -15,9 +15,7 @@ class Adc {
     HW::set(HW::Adcsra(), HW::Aden | HW::Adfr | HW::Adsc | HW::Adif | HW::Adie);
   }
 
-  inline uint8_t get_8bit_conversion_result() const {
-    return HW::get(HW::Adch);
-  }
+  inline uint8_t get_8bit_conversion_result() const { return HW::Adch(); }
 
   inline void stop_ADC() const { HW::clear(HW::Adcsra(), HW::Aden); }
   inline void start_ADC() const { HW::update(HW::Adcsra(), HW::Aden); }
