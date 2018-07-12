@@ -3,8 +3,8 @@
 
 #include "adc.hpp"
 #include "usart.hpp"
-#include "util/fifo.hpp"
 #include "util/avr.hpp"
+#include "util/fifo.hpp"
 
 template <uint16_t BufferSize>
 class Measure {
@@ -26,7 +26,7 @@ class Measure {
    * @return true
    * @return false
    */
-  inline bool is_full() const { return buffer.is_full(); }
+  inline bool is_buffer_full() const { return buffer.is_full(); }
 
   /**
    * @brief Stores provided data in buffer
