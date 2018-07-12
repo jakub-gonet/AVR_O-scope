@@ -31,12 +31,9 @@ class Usart {
    * @param byte data to send
    */
   void send_byte(const uint8_t byte) {
-    for (bool started = false; !to_send.put(byte);) {
-      if (!started) {
-        start_sending_data();
-        started = true;
-      }
-    }
+    while (!to_send.put(byte))
+      ;
+    start_sending_data();
   }
 
   /**
