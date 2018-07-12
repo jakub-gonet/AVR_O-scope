@@ -23,6 +23,10 @@ class Avr {
     address |= value;
   }
 
+  static inline bool is_set(volatile uint8_t& address, const uint8_t value) {
+    return address & value;
+  }
+
  private:
   Avr() {}
   ~Avr() {}
