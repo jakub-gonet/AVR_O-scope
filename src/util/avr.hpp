@@ -7,10 +7,6 @@ extern "C" {
 
 class Avr {
  public:
-  static inline volatile uint8_t& get(volatile uint8_t& address) {
-    return address;
-  }
-
   static inline void set(volatile uint8_t& address, const uint8_t value) {
     address = value;
   }
