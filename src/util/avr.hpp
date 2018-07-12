@@ -25,7 +25,7 @@ class Avr {
 
   static inline bool is_cleared(volatile uint8_t& address,
                                 const uint8_t value) {
-    return address & ~value;
+    return !(address & value);
   }
 
   // members
