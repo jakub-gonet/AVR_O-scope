@@ -19,9 +19,7 @@ int main() {
 }
 
 inline void usart_data_register_empty_interrupt() {
-  measure.disableAdc();
   usart.send_data_via_interrupt();
-  measure.enableAdc();
 }
 
 inline void adc_conversion_complete_interrupt() {

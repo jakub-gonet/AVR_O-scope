@@ -14,9 +14,11 @@ class Measure {
    * @param usart an Usart reference
    */
   void flush_data_via_USART(Usart<HW>& usart) {
+    disableAdc();
     while (!buffer.is_empty()) {
       usart.send_byte(buffer.get());
     }
+    enableAdc();
   }
 
   /**
