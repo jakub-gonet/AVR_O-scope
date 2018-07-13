@@ -4,7 +4,7 @@ extern "C" {
 #include <stdint.h>
 }
 
-template <uint8_t Size = 32>
+template <typename T = uint8_t, uint16_t Size = 32>
 class FifoQueue {
  public:
   /**
@@ -14,7 +14,7 @@ class FifoQueue {
    * @return true
    * @return false
    */
-  bool put(const uint8_t byte) volatile {
+  bool put(const T byte) volatile {
     if (!is_full()) {
       ++item_count;
       buffer[(++head) % Size] = byte;
@@ -28,7 +28,7 @@ class FifoQueue {
    *
    * @return uint8_t -1 indicating error
    */
-  uint8_t get() volatile {
+  T get() volatile {
     if (!is_empty()) {
       --item_count;
       return buffer[(++tail) % Size];
@@ -63,9 +63,10 @@ class FifoQueue {
   }
 
  private:
-  uint8_t item_count = 0;
-  uint8_t buffer[Size];
-  uint8_t head = -1;
-  uint8_t tail = -1;
+  uint16_t item_count = 0;
+  T buffer[Size];
+  uint16_t head = -1;
+  uint16_t tail = -1;
 };
+
 #endif  // FIFO_HPP
