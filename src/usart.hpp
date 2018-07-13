@@ -130,14 +130,26 @@ class Usart {
     enable_transmit_buffer_empty_interrupts();
   }
 
+  /**
+   * @brief Waits until UDR can be written
+   *
+   */
   inline void wait_until_transmit_buffer_is_ready() const {
     while (HW::is_cleared(HW::Ucsra(), HW::Udre))
       ;
   }
+  /**
+   * @brief Enables transmitter interrupts
+   *
+   */
   inline void enable_transmit_buffer_empty_interrupts() const {
     HW::update(HW::Ucsrb(), HW::Udrie);
   }
 
+  /**
+   * @brief Disables buffer empty interrupts
+   *
+   */
   inline void disable_transmit_buffer_empty_interrupts() const {
     HW::clear(HW::Ucsrb(), HW::Udrie);
   }
