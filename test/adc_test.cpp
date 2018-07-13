@@ -66,11 +66,13 @@ SCENARIO("ADC is working properly", "[ADC]") {
       MockedAvr::set(MockedAvr::Adch(), 100);
 
       THEN("Result can be obtained from ADCH") {
-        REQUIRE(MockedAvr::Adch() == 100);
+        REQUIRE(adc.get_8bit_conversion_result() == 100);
       }
 
-      THEN("ADC conversion complete flag is set if global interrupts are enabled") {
-        //TODO
+      THEN(
+          "ADC conversion complete flag is set if global interrupts are "
+          "enabled") {
+        // TODO
         REQUIRE(MockedAvr::is_set(MockedAvr::Adcsra(), MockedAvr::Adif));
       }
     }
