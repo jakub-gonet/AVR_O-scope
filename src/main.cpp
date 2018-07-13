@@ -8,7 +8,7 @@ extern "C" {
 Usart usart(4800);
 Measure<16> measure;
 int main() {
-  sei();
+  Avr::enable_interrupts();
   while (true) {
     if (measure.is_buffer_full()) {
       measure.flush_data_via_USART(usart);
