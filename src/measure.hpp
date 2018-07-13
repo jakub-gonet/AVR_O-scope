@@ -32,7 +32,9 @@ class Measure {
    *
    * @param data
    */
-  inline void store_measured_data(const uint8_t data) { buffer.put(data); }
+  inline bool store_measured_data(const uint8_t data) {
+    return buffer.put(data);
+  }
 
   inline uint8_t get_ADC_result() const {
     return adc.get_8bit_conversion_result();
