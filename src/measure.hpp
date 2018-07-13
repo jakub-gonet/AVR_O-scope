@@ -3,10 +3,9 @@
 
 #include "adc.hpp"
 #include "usart.hpp"
-#include "util/avr.hpp"
 #include "util/fifo.hpp"
 
-template <uint16_t BufferSize>
+template <class HW, uint16_t BufferSize>
 class Measure {
  public:
   /**
@@ -14,7 +13,7 @@ class Measure {
    *
    * @param usart an Usart reference
    */
-  void flush_data_via_USART(Usart& usart) {
+  void flush_data_via_USART(Usart<HW>& usart) {
     while (!buffer.is_empty()) {
       usart.send_byte(buffer.get());
     }
@@ -44,7 +43,7 @@ class Measure {
 
  private:
   FifoQueue<BufferSize> buffer;
-  const Adc<Avr> adc;
+  const Adc<HW> adc;
 };
 
 #endif  // MEASURE_HPP

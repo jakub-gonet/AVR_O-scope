@@ -1,11 +1,9 @@
 #ifndef USART_HPP
 #define USART_HPP
 
-extern "C" {
-#include <avr/io.h>
-}
 #include "util/fifo.hpp"
 
+template <class HW>
 class Usart {
  public:
   /**
@@ -14,15 +12,15 @@ class Usart {
    * @param baud_rate
    */
   inline Usart(const uint16_t baud_rate) {
-    const uint16_t baud_prescale = (((F_CPU / (baud_rate * 16UL))) - 1);
-    UBRRH = (baud_prescale >> 8);
-    UBRRL = baud_prescale;
+    const uint16_t baud_prescale = (((HW::F_cpu / (baud_rate * 16UL))) - 1);
+    HW::set(HW::Ubrrh(), baud_prescale >> 8);
+    HW::set(HW::Ubrrl(), baud_prescale);
 
     // enable Tx and Rx and enable receive interrupts
-    UCSRB = (1 << RXCIE) | (1 << TXEN) | (1 << RXEN);
+    HW::set(HW::Ucsrb(), HW::Rxcie | HW::Txen | HW::Rxen);
 
     // set data format to 8 bits, 1 stop bit, no parity check
-    UCSRC = (1 << URSEL) | (1 << UCSZ0) | (1 << UCSZ1);
+    HW::set(HW::Ucsrc(), HW::Ursel | HW::Ucsz0 | HW::Ucsz1);
   }
 
   /**
@@ -98,7 +96,7 @@ class Usart {
   inline void send_data_via_interrupt() {
     uint8_t data = to_send.get();
     if (data != static_cast<uint8_t>(-1) && data) {
-      UDR = data;
+      HW::set(HW::Udr(), data);
     } else {
       disable_transmit_buffer_empty_interrupts();
     }
@@ -108,7 +106,7 @@ class Usart {
    * @brief Function designed to be used in ISR(USART_RXC_vect).
    *
    */
-  inline void receive_data_via_interrupt() { received.put(UDR); }
+  inline void receive_data_via_interrupt() { received.put(HW::Udr()); }
 
  private:
   /**
@@ -133,15 +131,15 @@ class Usart {
   }
 
   inline void wait_until_transmit_buffer_is_ready() const {
-    while (!(UCSRA & (1 << UDRE)))
+    while (HW::is_cleared(HW::Ucsra(), HW::Udre))
       ;
   }
   inline void enable_transmit_buffer_empty_interrupts() const {
-    UCSRB |= (1 << UDRIE);
+    HW::update(HW::Ucsrb(), HW::Udrie);
   }
 
   inline void disable_transmit_buffer_empty_interrupts() const {
-    UCSRB &= ~(1 << UDRIE);
+    HW::clear(HW::Ucsrb(), HW::Udrie);
   }
 };
 

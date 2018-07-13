@@ -33,6 +33,8 @@ class Avr {
 
   // members
 
+  constexpr static uint64_t F_cpu = F_CPU;
+
   // ADC
   constexpr static volatile uint8_t& Admux() { return ADMUX; }
   constexpr static volatile uint8_t& Adcsra() { return ADCSRA; }

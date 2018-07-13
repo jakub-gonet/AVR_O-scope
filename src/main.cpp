@@ -4,9 +4,10 @@ extern "C" {
 }
 #include "measure.hpp"
 #include "usart.hpp"
+#include "util/avr.hpp"
 
-Usart usart(4800);
-Measure<16> measure;
+Usart<Avr> usart(4800);
+Measure<Avr, 16> measure;
 
 int main() {
   Avr::enable_interrupts();
