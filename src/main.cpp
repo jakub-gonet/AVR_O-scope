@@ -7,6 +7,7 @@ extern "C" {
 
 Usart usart(4800);
 Measure<16> measure;
+
 int main() {
   Avr::enable_interrupts();
   while (true) {
@@ -16,10 +17,18 @@ int main() {
   }
 }
 
-ISR(USART_UDRE_vect) {
+inline void usart_data_register_empty_interrupt() {
   measure.disableAdc();
   usart.send_data_via_interrupt();
   measure.enableAdc();
+}
+
+inline void adc_conversion_complete_interrupt() {
+  measure.store_measured_data(measure.get_ADC_result());
+}
+
+ISR(USART_UDRE_vect) {
+  usart_data_register_empty_interrupt();
 }
 
 // ISR(USART_RXC_vect) {
@@ -27,5 +36,5 @@ ISR(USART_UDRE_vect) {
 // }
 
 ISR(ADC_vect) {
-  measure.store_measured_data(measure.get_ADC_result());
+  adc_conversion_complete_interrupt();
 }
