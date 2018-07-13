@@ -38,19 +38,26 @@ class FifoQueue {
 
   /**
    * @brief Checks if queue is empty
-   * 
-   * @return true 
-   * @return false 
+   *
+   * @return true
+   * @return false
    */
   inline bool is_empty() const volatile { return item_count == 0; }
 
   /**
    * @brief Checks if queue is full
-   * 
-   * @return true 
-   * @return false 
+   *
+   * @return true
+   * @return false
    */
   inline bool is_full() const volatile { return item_count == Size; }
+
+  /**
+   * @brief Get the item count in FIFO
+   *
+   * @return uint16_t
+   */
+  inline uint16_t get_item_count() const { return item_count; }
 
   /**
    * @brief Clears queue
