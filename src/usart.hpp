@@ -113,12 +113,12 @@ class Usart {
    * @brief FIFO queue used to buffer data to send
    *
    */
-  volatile FifoQueue<32> to_send;
+  volatile FifoQueue<uint8_t, 32> to_send;
   /**
    * @brief FIFO queue used to buffer received data
    *
    */
-  volatile FifoQueue<32> received;
+  volatile FifoQueue<uint8_t, 32> received;
 
   /**
    * @brief Start the proccess of sending data from `to_send` queue. It should
