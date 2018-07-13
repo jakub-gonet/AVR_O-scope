@@ -16,10 +16,26 @@ class Adc {
             HW::Adps0 | HW::Adps1 | HW::Aden | HW::Adfr | HW::Adie | HW::Adsc);
   }
 
+  /**
+   * @brief Get the 8bit ADC conversion result
+   *
+   * @return uint8_t
+   */
   inline uint8_t get_8bit_conversion_result() const { return HW::Adch(); }
 
+  /**
+   * @brief Disables ADC
+   *
+   */
   inline void stop_ADC() const { HW::clear(HW::Adcsra(), HW::Aden); }
-  inline void start_ADC() const { HW::update(HW::Adcsra(), HW::Aden); }
+
+  /**
+   * @brief Enables ADC and start a conversion
+   *
+   */
+  inline void start_ADC() const {
+    HW::update(HW::Adcsra(), HW::Aden | HW::Adsc);
+  }
 };
 
 #endif  // ADC_HPP
