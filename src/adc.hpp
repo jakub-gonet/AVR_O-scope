@@ -5,6 +5,10 @@ template <class HW>
 class Adc {
  public:
   inline Adc() {
+    HW::set(HW::DdrC(), 0xFF);
+    //First pin used as input, rest as output
+    HW::clear(HW::DdrC(), HW::Pc0);
+
     // Uref = AVCC with external capacitor at AREF pin,
     // set let adjust of result for convienient 8bit access
     HW::set(HW::Admux(), HW::Refs0 | HW::Adlar);
