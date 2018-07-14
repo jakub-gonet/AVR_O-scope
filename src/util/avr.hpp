@@ -35,6 +35,46 @@ class Avr {
 
   constexpr static uint64_t F_cpu = F_CPU;
 
+  // DDR
+  constexpr static volatile uint8_t& DdrB() { return DDRB; }
+  constexpr static volatile uint8_t& DdrC() { return DDRC; }
+  constexpr static volatile uint8_t& DdrD() { return DDRD; }
+
+  // PORT
+  constexpr static volatile uint8_t& PortB() { return PORTB; }
+  constexpr static volatile uint8_t& PortC() { return PORTC; }
+  constexpr static volatile uint8_t& PortD() { return PORTD; }
+
+  // PIN
+  constexpr static volatile uint8_t& PinB() { return PINB; }
+  constexpr static volatile uint8_t& PinC() { return PINC; }
+  constexpr static volatile uint8_t& PinD() { return PIND; }
+
+  // P_
+
+  constexpr static uint8_t Pb0 = (1 << PB0);
+  constexpr static uint8_t Pb1 = (1 << PB1);
+  constexpr static uint8_t Pb2 = (1 << PB2);
+  constexpr static uint8_t Pb3 = (1 << PB3);
+  constexpr static uint8_t Pb4 = (1 << PB4);
+  constexpr static uint8_t Pb5 = (1 << PB5);
+
+  constexpr static uint8_t Pc0 = (1 << PC0);
+  constexpr static uint8_t Pc1 = (1 << PC1);
+  constexpr static uint8_t Pc2 = (1 << PC2);
+  constexpr static uint8_t Pc3 = (1 << PC3);
+  constexpr static uint8_t Pc4 = (1 << PC4);
+  constexpr static uint8_t Pc5 = (1 << PC5);
+  constexpr static uint8_t Pc6 = (1 << PC6);
+
+  constexpr static uint8_t Pd0 = (1 << PD0);
+  constexpr static uint8_t Pd1 = (1 << PD1);
+  constexpr static uint8_t Pd2 = (1 << PD2);
+  constexpr static uint8_t Pd3 = (1 << PD3);
+  constexpr static uint8_t Pd4 = (1 << PD4);
+  constexpr static uint8_t Pd5 = (1 << PD5);
+  constexpr static uint8_t Pd6 = (1 << PD6);
+
   // ADC
   constexpr static volatile uint8_t& Admux() { return ADMUX; }
   constexpr static volatile uint8_t& Adcsra() { return ADCSRA; }
