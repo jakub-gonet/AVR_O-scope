@@ -95,7 +95,7 @@ class Usart {
    */
   inline void send_data_via_interrupt() {
     uint8_t data = to_send.get();
-    if (data != static_cast<uint8_t>(-1) && data) {
+    if (data != static_cast<uint8_t>(-1)) {
       HW::set(HW::Udr(), data);
     } else {
       disable_transmit_buffer_empty_interrupts();
