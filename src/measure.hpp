@@ -38,9 +38,11 @@ class Measure {
   inline bool is_buffer_empty() const { return buffer.is_empty(); }
 
   /**
-   * @brief Stores provided data in buffer
+   * @brief Stores provided data in internal buffer
    *
    * @param data
+   * @return true if succeded
+   * @return false otherwise
    */
   inline bool store_measured_data() {
     return buffer.put(adc.get_8bit_conversion_result());
@@ -59,7 +61,16 @@ class Measure {
   inline void enable_measurements() const { adc.start_ADC(); }
 
  private:
-  FifoQueue<uint16_t, BufferSize> buffer;
+  /**
+   * @brief Buffer used to store measurements results
+   *
+   */
+  volatile FifoQueue<uint8_t, BufferSize> buffer;
+
+  /**
+   * @brief An ADC object
+   *
+   */
   const Adc<HW> adc;
 };
 
