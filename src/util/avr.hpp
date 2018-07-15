@@ -81,6 +81,10 @@ class Avr {
   constexpr static volatile uint16_t& Adc() { return ADC; }
   constexpr static volatile uint8_t& Adch() { return ADCH; }
 
+  constexpr static uint8_t Mux0 = (1 << MUX0);
+  constexpr static uint8_t Mux1 = (1 << MUX1);
+  constexpr static uint8_t Mux2 = (1 << MUX2);
+  constexpr static uint8_t Mux3 = (1 << MUX3);
   constexpr static uint8_t Refs0 = (1 << REFS0);
   constexpr static uint8_t Adlar = (1 << ADLAR);
   constexpr static uint8_t Aden = (1 << ADEN);
