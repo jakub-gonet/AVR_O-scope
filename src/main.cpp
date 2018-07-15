@@ -20,16 +20,8 @@ int main() {
   }
 }
 
-inline void usart_data_register_empty_interrupt() {
-  usart.send_data_via_interrupt();
-}
-
-inline void adc_conversion_complete_interrupt() {
-  measure.store_measured_data();
-}
-
 ISR(USART_UDRE_vect) {
-  usart_data_register_empty_interrupt();
+  usart.send_data_via_interrupt();
 }
 
 ISR(USART_RXC_vect) {
@@ -37,5 +29,5 @@ ISR(USART_RXC_vect) {
 }
 
 ISR(ADC_vect) {
-  adc_conversion_complete_interrupt();
+  measure.store_measured_data(measure.get_measured_data());
 }
