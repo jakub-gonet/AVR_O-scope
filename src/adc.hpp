@@ -17,7 +17,7 @@ class Adc {
     // conversion, interrupt on update, turn on interrups,
     // ADC prescaler (/8)
     HW::set(HW::Adcsra(),
-            HW::Adps0 | HW::Adps1 | HW::Aden | HW::Adfr | HW::Adie | HW::Adsc);
+            HW::Adps0 | HW::Adps1 | HW::Aden | HW::Adfr | HW::Adie);
   }
 
   /**
