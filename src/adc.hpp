@@ -10,8 +10,8 @@ class Adc {
     HW::clear(HW::DdrC(), HW::Pc0);
 
     // Uref = AVCC with external capacitor at AREF pin,
-    // set let adjust of result for convienient 8bit access
-    HW::set(HW::Admux(), HW::Refs0 | HW::Adlar);
+    // ADLAR for convienient 8bit access
+    HW::set(HW::Admux(), HW::Refs0 | HW::Adlar | HW::Mux2 | HW::Mux0);
 
     // ADC enable, free running mode, start first
     // conversion, interrupt on update, turn on interrups,
