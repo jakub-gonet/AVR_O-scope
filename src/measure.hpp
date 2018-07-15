@@ -44,10 +44,16 @@ class Measure {
    * @return true if succeded
    * @return false otherwise
    */
-  inline bool store_measured_data() {
-    return buffer.put(adc.get_8bit_conversion_result());
-  }
+  inline bool store_measured_data(uint8_t data) { return buffer.put(data); }
 
+  /**
+   * @brief Get the measured data from ADC
+   *
+   * @return uint8_t
+   */
+  inline uint8_t get_measured_data() {
+    return adc.get_8bit_conversion_result();
+  }
   /**
    * @brief Disables ADC
    *
