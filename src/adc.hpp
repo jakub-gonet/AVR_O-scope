@@ -6,7 +6,7 @@ class Adc {
  public:
   inline Adc() {
     HW::set(HW::DdrC(), 0xFF);
-    //First pin used as input, rest as output
+    // First pin used as input, rest as output
     HW::clear(HW::DdrC(), HW::Pc0);
 
     // Uref = AVCC with external capacitor at AREF pin,
@@ -14,8 +14,8 @@ class Adc {
     HW::set(HW::Admux(), HW::Refs0 | HW::Adlar);
 
     // ADC enable, free running mode, start first
-    // conversion, interrupt on update, turn on
-    // interrupts default prescaler (/2)
+    // conversion, interrupt on update, turn on interrups,
+    // ADC prescaler (/8)
     HW::set(HW::Adcsra(),
             HW::Adps0 | HW::Adps1 | HW::Aden | HW::Adfr | HW::Adie | HW::Adsc);
   }
