@@ -12,6 +12,7 @@ Measure<Avr, 32> measure;
 
 int main() {
   Avr::enable_interrupts();
+  measure.enable_measurements();
   while (true) {
     if (measure.is_buffer_full()) {
       measure.flush_data_via_USART(usart);
