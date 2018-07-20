@@ -7,7 +7,7 @@ extern "C" {
 SCENARIO("Data can be inserted to and retrieved from FIFO queue",
          "[FifoQueue]") {
   GIVEN("An empty FIFO queue") {
-    FifoQueue<2> queue;
+    FifoQueue<uint8_t, 2> queue;
     REQUIRE(queue.is_empty() == true);
 
     WHEN("Data is inserted") {
@@ -36,7 +36,7 @@ SCENARIO("Data can be inserted to and retrieved from FIFO queue",
   }
 
   GIVEN("A full FIFO queue") {
-    FifoQueue<2> queue;
+    FifoQueue<uint8_t, 2> queue;
     REQUIRE(queue.is_empty() == true);
     REQUIRE(queue.put(10) == true);
     REQUIRE(queue.put(20) == true);
@@ -50,7 +50,7 @@ SCENARIO("Data can be inserted to and retrieved from FIFO queue",
   }
 
   GIVEN("A 0 capacity FIFO queue") {
-    FifoQueue<0> queue;
+    FifoQueue<uint8_t, 0> queue;
     REQUIRE(queue.is_empty() == true);
     REQUIRE(queue.is_full() == true);
     WHEN("Next item is being inserted") {
