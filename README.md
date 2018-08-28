@@ -7,6 +7,8 @@ When buffer is full, conversion is stopped and data is send via USART.
 
 This project is written in C++ with HAL which covers nearly entire AVR internals (besides interrupts handlers).
 
+PC side plotter and images of working setup can be viewed [here](https://github.com/jakub-gonet/AVR_O-scope_PC)
+
 ## Compiling
 
 ```
